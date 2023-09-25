@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentage Scroll</title>
+
+    <style>
+        .container {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        h2 {
+            font-size: Arial sans-sarif;
+            text-align: center;
+            padding: 45px;
+            color: blue;
+        }
+
+        p {
+            font-size: 21px;
+            font-style: normal;
+        }
+
+        
+        .gallary {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 40px;
+        }
+
+        .gallary img {
+            width: 450px;
+            height: auto;
+            margin-bottom: 20px;
+            box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.2);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 30px;
+            background-color: #ccc;
+            width: 190px;
+            border-radius: 10px;
+
+        }
+
+        .progress {
+            height: 100%;
+            width: 0;
+            background-color: #4caf50;
+            transition: width 0.3s;
+        }
+        .percentage{
+            position: static;
+            right: 0;
+            font-size: 21px;
+            top:-20px;
+            color: #000;
+        
+        }
+       
+        
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- <button class="scroll-top-btn" id="scroll-top-btn">0% Viewed</button> -->
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit labore sequi fuga officiis laudantium animi
+            placeat repellat debitis voluptatum excepturi facere perspiciatis eum soluta vero sint corporis velit, illo
+            exercitationem! Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit labore sequi fuga officiis
+            laudantium animi placeat repellat debitis voluptatum excepturi facere perspiciatis eum soluta vero sint
+            corporis velit, illo exercitationem</p>
+        <h2>Image Gallary</h2>
+        <div class="gallary">
+
+            <img src="https://ninjasfiles.s3.amazonaws.com/asset_0000000000000025_1550237330_codezen_2.png">
+            <img src="https://ninjasfiles.s3.amazonaws.com/asset_0000000000000025_1550237330_codezen_2.png">
+            <img src="https://ninjasfiles.s3.amazonaws.com/asset_0000000000000025_1550237330_codezen_2.png">
+            <img src="https://ninjasfiles.s3.amazonaws.com/asset_0000000000000025_1550237330_codezen_2.png">
+            <img src="https://ninjasfiles.s3.amazonaws.com/asset_0000000000000026_1550237353_project_2.jpeg">
+            <img src="https://ninjasfiles.s3.amazonaws.com/asset_0000000000000026_1550237353_project_2.jpeg">
+
+            <img src="https://ninjasfiles.s3.amazonaws.com/asset_0000000000000025_1550237330_codezen_2.png">
+            <img src="https://ninjasfiles.s3.amazonaws.com/asset_0000000000000025_1550237330_codezen_2.png">
+            <img src="https://ninjasfiles.s3.amazonaws.com/asset_0000000000000025_1550237330_codezen_2.png">
+            <img src="https://ninjasfiles.s3.amazonaws.com/asset_0000000000000025_1550237330_codezen_2.png">
+            <img src="https://ninjasfiles.s3.amazonaws.com/asset_0000000000000025_1550237330_codezen_2.png">
+            <img src="https://ninjasfiles.s3.amazonaws.com/asset_0000000000000025_1550237330_codezen_2.png">
+            <img src="https://ninjasfiles.s3.amazonaws.com/asset_0000000000000026_1550237353_project_2.jpeg">
+            <img src="https://ninjasfiles.s3.amazonaws.com/asset_0000000000000026_1550237353_project_2.jpeg">
+
+            <img src="https://ninjasfiles.s3.amazonaws.com/asset_0000000000000025_1550237330_codezen_2.png">
+
+            <img src="https://ninjasfiles.s3.amazonaws.com/asset_0000000000000025_1550237330_codezen_2.png">
+
+        </div>
+        <div class="progress-bar">
+
+            <div class="progress" id="progress">
+                
+                <div class="percentage"><span>0% Viewed</span></div>
+            </div>
+            <!-- <div class="percentage">0% Viewed</div> -->
+        </div>
+    </div>
+    <script>
+        // window.addEventListener('scroll', () => {
+        //     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        //     const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        //     const scrollPercentage = (scrollTop / scrollHeight) * 100;
+        //     const progressBar = document.getElementById("progress");
+        //     progressBar.style.width = scrollPercentage + "%";
+        // });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const scrollProgressBar = document.querySelector(".progress");
+
+            function updateScrollProgress() {
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (scrollTop / scrollHeight) * 100;
+                scrollProgressBar.style.width = scrolled + "%";
+                const percentageText=document.querySelector('.percentage');
+                percentageText.textContent=Math.round(scrolled)+'%';
+            }
+
+            // Listen for scroll events and update the progress bar
+            window.addEventListener("scroll", updateScrollProgress);
+
+            // Initial update when the page loads
+            updateScrollProgress();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h2{
+            color: #333;
+        }
+        p{
+            font-size: 25px;
+            color: #666;
+        }
+        input{
+            padding: 5px;
+            font-size: 16px;
+        }
+        button{
+            padding: 10px 20px;
+            background-color: #007bff;
+            color:#fff;
+            border:none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Timer</h2>
+    <p>Counter:<span id="'counter">0</span></p>
+    <input type="number"id="inputNumber"placeholder="Enter a number">
+    <button onclick="startCounter">Start Counter</button>
+
+    <script>
+        let interval;
+        function startCounter(){
+            const inputNumber=parseInt(document.getElementById("inputNumber"));
+            if(!isNaN(inputNumber)&&inputNumber>=1 && inputNumber<=9){
+                let counter=0;
+                const counterElement=document.getElementById("counter");
+                interval=setInterval(function(){
+                    counter++;
+                    counterElement.innerHTML=counter;
+                    if(counter>=inputNumber){
+                        clearInterval(interval);
+                        alert("Timer finished");
+                    }
+                },500);
+            }else{
+                alert("Please enter a valid number between 1 and 9.");
+            }
+        }
+
+    </script>
+</body>
+</html>
